@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
 const Usuario = require("../models/usuario");
-const { verificaToken } = require("../middlewares/autenticacion");
+const {
+  verificaToken,
+  verificaAdmin_role,
+} = require("../middlewares/autenticacion");
 const bcrypt = require("bcrypt");
 const _ = require("underscore");
 
@@ -30,7 +33,7 @@ app.get("/usuarios", verificaToken, function (req, res) {
       });
     });
 });
-app.post("/usuarios", function (req, res) {
+app.post("/usuarios", [verificaToken, verificaAdmin_role], function (req, res) {
   //res.json('get usuarios ')
   let body = req.body;
 
@@ -55,30 +58,38 @@ app.post("/usuarios", function (req, res) {
     });
   });
 });
-app.put("/usuarios/:id", function (req, res) {
-  //res.json('get usuarios ')
-  let body = _.pick(req.body, ["nombre", "email", "img", "role", "estado"]);
+app.put(
+  "/usuarios/:id",
+  [verificaToken, verificaAdmin_role],
+  function (req, res) {
+    //res.json('get usuarios ')
+    let body = _.pick(req.body, ["nombre", "email", "img", "role", "estado"]);
 
-  Usuario.findByIdAndUpdate(
-    id,
-    body,
-    { new: true, runValidators: true },
-    (err, usuarioDB) => {
-      if (err) {
-        return res.status(400).json({
-          ok: false,
-          err,
+    Usuario.findByIdAndUpdate(
+      id,
+      body,
+      { new: true, runValidators: true },
+      (err, usuarioDB) => {
+        if (err) {
+          return res.status(400).json({
+            ok: false,
+            err,
+          });
+        }
+        res.json({
+          ok: true,
+          usuario: usuarioDB,
         });
       }
-      res.json({
-        ok: true,
-        usuario: usuarioDB,
-      });
-    }
-  );
-});
-app.delete("/usuarios/:id", function (req, res) {
-  res.json("DELETE usuarios");
-});
+    );
+  }
+);
+app.delete(
+  "/usuarios/:id",
+  [verificaToken, verificaAdmin_role],
+  function (req, res) {
+    res.json("DELETE usuarios");
+  }
+);
 
 module.exports = app;
