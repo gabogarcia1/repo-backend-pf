@@ -1,6 +1,9 @@
-app.use(require("./categoria"));
-
 const express = require("express");
+let Materia = require("../models/materia");
+
+//app.use(require("../models/categoria"));
+
+
 let {
   verificaToken,
   verificaAdmin_role,
@@ -8,13 +11,13 @@ let {
 
 let app = express();
 
-let Categoria = require("../models/categoria");
 
-app.get("/categoria", verificaToken, (req, res) => {
-  Categoria.find({})
+
+app.get("/materia", verificaToken, (req, res) => {
+  Materia.find({})
     .sort("descripcion")
     .populate("usuario", "nombre email")
-    .exec((err, categorias) => {
+    .exec((err, materias) => {
       if (err) {
         return res.status(500).json({
           ok: false,
@@ -23,25 +26,25 @@ app.get("/categoria", verificaToken, (req, res) => {
       }
       res.json({
         ok: true,
-        categorias,
+        materias,
       });
     });
 });
 
-app.get("/categoria/:id", verificaToken, (req, res) => {
+app.get("/materia/:id", verificaToken, (req, res) => {
   let id = req.params.id;
-  Categoria.findById(id, (err, categoriaDB) => {
+  Materia.findById(id, (err, materiaDB) => {
     if (err) {
       return res.status(500).json({
         ok: false,
         err,
       });
     }
-    if (!categoriaDB) {
+    if (!materiaDB) {
       return res.status(500).json({
         ok: false,
         err: {
-          message: "La categoria no existe",
+          message: "La materia no existe",
         },
       });
     }
