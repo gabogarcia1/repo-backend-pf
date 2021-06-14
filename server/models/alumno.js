@@ -6,7 +6,7 @@ const alumnoSchema = new Schema({
     required: [true, "El nombre es necesario"],
   },
   apellido: {
-    type: Number,
+    type: String,
     required: [true, "El apellido es necesario"],
   },
   email:{
@@ -14,11 +14,11 @@ const alumnoSchema = new Schema({
     require:true,
   },
   aniocursado: {
-    type: String,
+    type: Number,
     required: true,
   },
-  nroexpediente:{
-    type: String,
+  id:{ // este es mi numero de expediente
+    type: Number,
     required:true
   },
   activo: {

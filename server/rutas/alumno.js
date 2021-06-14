@@ -3,7 +3,7 @@ const { verificaToken } = require("../middlewares/autenticacion");
 const app = express();
 let Alumno = require("../models/alumno");
 //---Método GET
-app.get("/Alumno", verificaToken, (req, res) => {
+app.get("/alumno", verificaToken, (req, res) => {
   let desde = req.query.desde || 0;
   desde = Number(desde);
   let limite = req.query.limite || 5;
@@ -38,6 +38,7 @@ app.get("/Alumno", verificaToken, (req, res) => {
 });
 app.get("/alumno/:id", verificaToken, (req, res) => {
   let id = req.params.id;
+
   Alumno.findById(id)
     .populate("usuario", "nombre email")
     .exec((err, alumnoDB) => {
@@ -62,28 +63,31 @@ app.get("/alumno/:id", verificaToken, (req, res) => {
 app.get("/alumno/buscar/:termino", verificaToken, (req, res) => {
   let termino = req.params.termino;
   let reGex = new RegExp(termino, "i");
-  Alumno.find({ nombre: reGex })
-    .exec((err, producto) => {
-      if (err) {
-        return res.status(500).json({
-          ok: false,
-          err,
-        });
-      }
-      res.json({
-        ok: true,
-        alumno,
+  Alumno.find({ nombre: reGex }).exec((err, producto) => {
+    if (err) {
+      return res.status(500).json({
+        ok: false,
+        err,
       });
+    }
+    res.json({
+      ok: true,
+      alumno,
     });
+  });
 });
-app.post("/alumno", verificaToken, (req, res) => {
+//app.post("/alumno", verificaToken, (req, res) => {
+
+app.post("/alumno", (req, res) => {
   let body = req.body;
-  let alumno = new Producto({
-    usuario: req.usuario._id,
+  let alumno = new Alumno({
+    //usuario: req.usuario._id,
     nombre: body.nombre,
+    apellido:body.apellido,
+    email:body.email,
     aniocursado: body.aniocursado,
-    nroexpediente:body.nroexpediente,
-    activo:body.activo,
+    id: body.id,
+    activo: body.activo,
   });
 
   alumno.save((err, alumnoDB) => {

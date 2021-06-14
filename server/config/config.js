@@ -1,5 +1,5 @@
 //========Puerto==========
-process.env.PORT = process.env.PORT || 3005;
+process.env.PORT = process.env.PORT || 3000;
 //===Definir entorno====
 process.env.NODE_ENV = process.env.NODE_ENV || "dev";
 //===Base de datos======
