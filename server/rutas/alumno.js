@@ -76,9 +76,9 @@ app.get("/alumno/buscar/:termino", verificaToken, (req, res) => {
     });
   });
 });
-//app.post("/alumno", verificaToken, (req, res) => {
+app.post("/alumno", verificaToken, (req, res) => {
 
-app.post("/alumno", (req, res) => {
+// app.post("/alumno", (req, res) => {
   let body = req.body;
   let alumno = new Alumno({
     //usuario: req.usuario._id,

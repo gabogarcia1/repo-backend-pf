@@ -33,10 +33,10 @@ app.get("/usuarios", verificaToken, function (req, res) {
       });
     });
 });
-// app.post("/usuarios", [verificaToken, verificaAdmin_role], function (req, res) {
+app.post("/usuarios", [verificaToken, verificaAdmin_role], function (req, res) {
   //para mi no deberia verificar token y admin role
   
-  app.post("/usuarios",  function (req, res) {
+  // app.post("/usuarios",  function (req, res) {
   //res.json('get usuarios ')
   let body = req.body;
 

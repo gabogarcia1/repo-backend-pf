@@ -13,7 +13,7 @@ let usuarioSchema = new Schema({
   },
   apellido: {
     type: String,
-    required: [true, "El nombre es necesario"],
+    required: [true, "El apellido es necesario"],
   },
   fecha_ingreso_dia:{
     type: Number,
@@ -63,6 +63,43 @@ let usuarioSchema = new Schema({
     type: Boolean,
     default: true,
   },
+  materia_matematicas:{
+    type: Number,
+    default: 4,
+  },
+  materia_lyl:{
+    type: Number,
+    default: 8,
+  },
+  materia_bio:{
+    type: Number,
+    default: 5,
+  },
+  materia_fisica:{
+    type: Number,
+    default: 8,
+  },
+  materia_quim:{
+    type: Number,
+    default: 5,
+  },
+  materia_eco:{
+    type: Number,
+    default: 8,
+  },
+  materia_geo:{
+    type: Number,
+    default: 8,
+  },
+  materia_historia:{
+    type: Number,
+    default: 7,
+  },
+  materia_edfis:{
+    type: Number,
+    default: 6,
+  }
+
 });
 usuarioSchema.plugin(uniqueValidator, {
   message: "{PATH} debe ser unico",
