@@ -76,7 +76,8 @@ app.delete("/usuarios/:id", function (req, res) {
 });
 
 mongoose.connect(
-  "mongodb://localhost:27017/test",
+  process.env.URLDB,
+  // "mongodb://localhost:27017/test",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
