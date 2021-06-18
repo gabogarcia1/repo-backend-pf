@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const alumnoSchema = new Schema({
  
-
   nombre: {
     type: String,
     required: [true, "El nombre es necesario"],
@@ -11,54 +10,25 @@ const alumnoSchema = new Schema({
     type: String,
     required: [true, "El apellido es necesario"],
   },
-  fecha_ingreso_dia:{
-    type: Number,
-    required:true,
-  },
-  fecha_ingreso_mes:{
-    type: Number,
-    required:true,
-  },
-  fecha_ingreso_anio:{
-    type: Number,
-    required:true,
-  },
-  id:{
-    type: Number,
-    required:true,
-  },
-  email: {
+  email:{
     type: String,
-    required: [true, "El correo es necesario"],
-    unique: true,
+    require:true,
   },
-  password: {
-    type: String,
-    required: true,
-  },
-  telefono:{
+  aniocursado: {
     type: Number,
     required: true,
   },
-  role: {
-    type: String,
-    default: "USER_ROLE",
-    enum: rolesValidos,
+  id:{ // este es mi numero de expediente
+    type: Number,
+    required:true
   },
-  institucion: {
-    type: String,
-    required:true,
-    default: "Tonin High school",
-  },
-  direccion:{
-    type: String,
-    required: true,
-    default: "General paz 880",
-  },
-  estado: {
+  activo: {
     type: Boolean,
+    required: true,
     default: true,
   },
+
+
   cuota_al_dia: {
     type: Boolean,
     default: true,

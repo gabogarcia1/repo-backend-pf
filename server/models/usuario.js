@@ -7,6 +7,8 @@ let rolesValidos = {
 
 let Schema = mongoose.Schema;
 let usuarioSchema = new Schema({
+  
+
   nombre: {
     type: String,
     required: [true, "El nombre es necesario"],
@@ -15,25 +17,54 @@ let usuarioSchema = new Schema({
     type: String,
     required: [true, "El apellido es necesario"],
   },
-  email:{
+  fecha_ingreso_dia:{
+    type: Number,
+    required:true,
+  },
+  fecha_ingreso_mes:{
+    type: Number,
+    required:true,
+  },
+  fecha_ingreso_anio:{
+    type: Number,
+    required:true,
+  },
+  id:{
+    type: Number,
+    required:true,
+  },
+  email: {
     type: String,
-    require:true,
+    required: [true, "El correo es necesario"],
+    unique: true,
   },
-  aniocursado: {
+  password: {
+    type: String,
+    required: true,
+  },
+  telefono:{
     type: Number,
     required: true,
   },
-  id:{ // este es mi numero de expediente
-    type: Number,
-    required:true
+  role: {
+    type: String,
+    default: "USER_ROLE",
+    enum: rolesValidos,
   },
-  activo: {
+  institucion: {
+    type: String,
+    required:true,
+    default: "Tonin High school",
+  },
+  direccion:{
+    type: String,
+    required: true,
+    default: "General paz 880",
+  },
+  estado: {
     type: Boolean,
-    required: true,
     default: true,
   },
-
-
 
 });
 usuarioSchema.plugin(uniqueValidator, {
