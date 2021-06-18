@@ -15,90 +15,25 @@ let usuarioSchema = new Schema({
     type: String,
     required: [true, "El apellido es necesario"],
   },
-  fecha_ingreso_dia:{
-    type: Number,
-    required:true,
-  },
-  fecha_ingreso_mes:{
-    type: Number,
-    required:true,
-  },
-  fecha_ingreso_anio:{
-    type: Number,
-    required:true,
-  },
-  id:{
-    type: Number,
-    required:true,
-  },
-  email: {
+  email:{
     type: String,
-    required: [true, "El correo es necesario"],
-    unique: true,
+    require:true,
   },
-  password: {
-    type: String,
-    required: true,
-  },
-  telefono:{
+  aniocursado: {
     type: Number,
     required: true,
   },
-  role: {
-    type: String,
-    default: "USER_ROLE",
-    enum: rolesValidos,
+  id:{ // este es mi numero de expediente
+    type: Number,
+    required:true
   },
-  institucion: {
-    type: String,
-    required:true,
-    default: "Tonin High school",
-  },
-  direccion:{
-    type: String,
-    required: true,
-    default: "General paz 880",
-  },
-  estado: {
+  activo: {
     type: Boolean,
+    required: true,
     default: true,
   },
-  materia_matematicas:{
-    type: Number,
-    default: 4,
-  },
-  materia_lyl:{
-    type: Number,
-    default: 8,
-  },
-  materia_bio:{
-    type: Number,
-    default: 5,
-  },
-  materia_fisica:{
-    type: Number,
-    default: 8,
-  },
-  materia_quim:{
-    type: Number,
-    default: 5,
-  },
-  materia_eco:{
-    type: Number,
-    default: 8,
-  },
-  materia_geo:{
-    type: Number,
-    default: 8,
-  },
-  materia_historia:{
-    type: Number,
-    default: 7,
-  },
-  materia_edfis:{
-    type: Number,
-    default: 6,
-  }
+
+
 
 });
 usuarioSchema.plugin(uniqueValidator, {
