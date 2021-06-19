@@ -39,12 +39,17 @@ app.get("/usuarios", verificaToken, function (req, res) {
   app.post("/usuarios",  function (req, res) {
   //res.json('get usuarios ')
   let body = req.body;
-
+    
   let usuario = new Usuario({
     nombre: body.nombre,
+    apellido:body.apellido,
+    telefono:body.telefono,
+    institucion:body.institucion,
+    direccion:body.direccion,
     email: body.email,
     password: bcrypt.hashSync(body.password, 10),
     role: body.role,
+    
   });
 
   usuario.save((err, usuarioDB) => {

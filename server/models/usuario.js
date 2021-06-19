@@ -17,22 +17,23 @@ let usuarioSchema = new Schema({
     type: String,
     required: [true, "El apellido es necesario"],
   },
-  fecha_ingreso_dia:{
-    type: Number,
-    required:true,
-  },
-  fecha_ingreso_mes:{
-    type: Number,
-    required:true,
-  },
-  fecha_ingreso_anio:{
-    type: Number,
-    required:true,
-  },
-  id:{
-    type: Number,
-    required:true,
-  },
+ 
+  // fecha_ingreso_dia:{
+  //   type: Number,
+  //   required:true,
+  // },
+  // fecha_ingreso_mes:{
+  //   type: Number,
+  //   required:true,
+  // },
+  // fecha_ingreso_anio:{
+  //   type: Number,
+  //   required:true,
+  // },
+  // id:{
+  //   type: Number,
+  //   required:true,
+  // },
   email: {
     type: String,
     required: [true, "El correo es necesario"],
@@ -66,6 +67,8 @@ let usuarioSchema = new Schema({
     default: true,
   },
 
+},{
+  timestamps:true,
 });
 usuarioSchema.plugin(uniqueValidator, {
   message: "{PATH} debe ser unico",
