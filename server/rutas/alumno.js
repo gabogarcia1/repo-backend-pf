@@ -3,7 +3,7 @@ const { verificaToken } = require("../middlewares/autenticacion");
 const app = express();
 let Alumno = require("../models/alumno");
 //---Método GET
-app.get("/alumno", verificaToken, (req, res) => {
+app.get("/alumno", (req, res) => {
   let desde = req.query.desde || 0;
   desde = Number(desde);
   let limite = req.query.limite || 5;
