@@ -7,9 +7,31 @@ let rolesValidos = {
 
 let Schema = mongoose.Schema;
 let usuarioSchema = new Schema({
+  
+
   nombre: {
     type: String,
     required: [true, "El nombre es necesario"],
+  },
+  apellido: {
+    type: String,
+    required: [true, "El apellido es necesario"],
+  },
+  fecha_ingreso_dia:{
+    type: Number,
+    required:true,
+  },
+  fecha_ingreso_mes:{
+    type: Number,
+    required:true,
+  },
+  fecha_ingreso_anio:{
+    type: Number,
+    required:true,
+  },
+  id:{
+    type: Number,
+    required:true,
   },
   email: {
     type: String,
@@ -20,19 +42,30 @@ let usuarioSchema = new Schema({
     type: String,
     required: true,
   },
-  img: {
-    type: String,
-    required: false,
+  telefono:{
+    type: Number,
+    required: true,
   },
   role: {
     type: String,
     default: "USER_ROLE",
     enum: rolesValidos,
   },
+  institucion: {
+    type: String,
+    required:true,
+    default: "Tonin High school",
+  },
+  direccion:{
+    type: String,
+    required: true,
+    default: "General paz 880",
+  },
   estado: {
     type: Boolean,
     default: true,
   },
+
 });
 usuarioSchema.plugin(uniqueValidator, {
   message: "{PATH} debe ser unico",

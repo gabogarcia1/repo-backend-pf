@@ -1,28 +1,27 @@
 const express = require("express");
 const { verificaToken } = require("../middlewares/autenticacion");
 const app = express();
-let Producto = require("../modelos/producto");
+let Alumno = require("../models/alumno");
 //---Método GET
-app.get("/producto", verificaToken, (req, res) => {
+app.get("/alumno", verificaToken, (req, res) => {
   let desde = req.query.desde || 0;
   desde = Number(desde);
   let limite = req.query.limite || 5;
   limite = Number(limite);
 
-  Producto.find({ disponible: true })
+  Alumno.find({ activo: true })
     .limit(limite) //limito registros a mostrar por página
     .skip(desde) //desde que registro comienzo a mostrar
     .sort("nombre") //ordeno la lista por nombre A-Z
     .populate("usuario", "nombre email") //traigo los datos segun el id de usuario
-    .populate("categoria", "descripcion") //traigo los datos segun id de categoria
-    .exec((err, productos) => {
+    .exec((err, alumnos) => {
       if (err) {
         return res.status(500).json({
           ok: false,
           err,
         });
       }
-      Producto.count({ disponible: true }, (err, conteo) => {
+      Alumno.count({ activo: true }, (err, conteo) => {
         if (err) {
           return res.status(400).json({
             ok: false,
@@ -31,18 +30,18 @@ app.get("/producto", verificaToken, (req, res) => {
         }
         res.json({
           ok: true,
-          productos,
+          alumnos,
           cantidad: conteo,
         });
       });
     });
 });
-app.get("/producto/:id", verificaToken, (req, res) => {
+app.get("/alumno/:id", verificaToken, (req, res) => {
   let id = req.params.id;
-  Producto.findById(id)
+
+  Alumno.findById(id)
     .populate("usuario", "nombre email")
-    .populate("categoria", "descripcion")
-    .exec((err, productoDB) => {
+    .exec((err, alumnoDB) => {
       if (err) {
         return res.status(500).json({
           ok: false,
@@ -54,43 +53,44 @@ app.get("/producto/:id", verificaToken, (req, res) => {
 
       res.json({
         ok: true,
-        producto: productoDB,
+        alumno: alumnoDB,
       });
     });
 });
 //==========================
 // Buscar producto por termino
 //==========================
-app.get("/producto/buscar/:termino", verificaToken, (req, res) => {
+app.get("/alumno/buscar/:termino", verificaToken, (req, res) => {
   let termino = req.params.termino;
   let reGex = new RegExp(termino, "i");
-  Producto.find({ nombre: reGex })
-    .populate("categoria", "descripcion")
-    .exec((err, producto) => {
-      if (err) {
-        return res.status(500).json({
-          ok: false,
-          err,
-        });
-      }
-      res.json({
-        ok: true,
-        producto,
+  Alumno.find({ nombre: reGex }).exec((err, producto) => {
+    if (err) {
+      return res.status(500).json({
+        ok: false,
+        err,
       });
+    }
+    res.json({
+      ok: true,
+      alumno,
     });
+  });
 });
-app.post("/producto", verificaToken, (req, res) => {
+app.post("/alumno", verificaToken, (req, res) => {
+
+// app.post("/alumno", (req, res) => {
   let body = req.body;
-  let producto = new Producto({
-    usuario: req.usuario._id,
+  let alumno = new Alumno({
+    //usuario: req.usuario._id,
     nombre: body.nombre,
-    precioUni: body.precioUni,
-    descripcion: body.descripcion,
-    disponible: body.disponible,
-    categoria: body.categoria,
+    apellido:body.apellido,
+    email:body.email,
+    aniocursado: body.aniocursado,
+    id: body.id,
+    activo: body.activo,
   });
 
-  producto.save((err, productoDB) => {
+  alumno.save((err, alumnoDB) => {
     if (err) {
       return res.status(500).json({
         ok: false,
@@ -99,26 +99,26 @@ app.post("/producto", verificaToken, (req, res) => {
     }
     res.status(201).json({
       ok: true,
-      producto: productoDB,
+      alumno: alumnoDB,
     });
   });
 });
 
-app.put("/producto/:id", verificaToken, (req, res) => {
+app.put("/alumno/:id", verificaToken, (req, res) => {
   let id = req.params.id;
   let body = req.body;
-  Producto.findByIdAndUpdate(
+  Alumno.findByIdAndUpdate(
     id,
     body,
     { new: true, runValidators: true },
-    (err, productoDB) => {
+    (err, alumnoDB) => {
       if (err) {
         return res.status(500).json({
           ok: false,
           err,
         });
       }
-      if (!productoDB) {
+      if (!alumnoDB) {
         return res.status(400).json({
           ok: false,
           err: {
@@ -129,38 +129,38 @@ app.put("/producto/:id", verificaToken, (req, res) => {
 
       res.json({
         ok: true,
-        message: "Producto actualizado",
-        producto: productoDB,
+        message: "Alumno actualizado",
+        alumno: alumnoDB,
       });
     }
   );
 });
 
-app.delete("/producto/:id", verificaToken, (req, res) => {
+app.delete("/alumno/:id", verificaToken, (req, res) => {
   let id = req.params.id;
-  let disponibleActualizado = {
-    disponible: false,
+  let activoActualizado = {
+    activo: false,
   };
-  Producto.findByIdAndUpdate(
+  Alumno.findByIdAndUpdate(
     id,
-    disponibleActualizado,
+    activoActualizado,
     { new: true },
-    (err, productoBorrado) => {
+    (err, alumnoBorrado) => {
       if (err) {
         return res.status(400).json({
           ok: false,
           err,
         });
       }
-      if (!productoBorrado) {
+      if (!alumnoBorrado) {
         return res.status(400).json({
           ok: false,
-          message: "Producto no encontrado",
+          message: "Alumno no encontrado",
         });
       }
       res.json({
         ok: true,
-        producto: productoBorrado,
+        alumno: alumnoBorrado,
       });
     }
   );

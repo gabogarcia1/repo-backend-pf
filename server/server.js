@@ -1,10 +1,9 @@
 const express = require("express");
 const app = express();
-const cors = require("cors");
-app.use(cors());
 const mongoose = require("mongoose");
 
 require("./config/config");
+app.use(cors());
 app.use(
   express.urlencoded({
     extended: true,
@@ -76,7 +75,8 @@ app.delete("/usuarios/:id", function (req, res) {
 });
 
 mongoose.connect(
-  "mongodb://localhost:27017/test",
+  process.env.URLDB,
+  // "mongodb://localhost:27017/test",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
