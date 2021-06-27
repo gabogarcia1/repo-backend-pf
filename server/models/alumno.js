@@ -18,17 +18,16 @@ const alumnoSchema = new Schema({
     type: Number,
     required: true,
   },
-  id:{ // este es mi numero de expediente
+  nroExpediente:{ // este es mi numero de expediente
     type: Number,
-    required:true
+    required:true,
+    unique: true
   },
   activo: {
     type: Boolean,
     required: true,
     default: true,
   },
-
-
   cuota_al_dia: {
     type: Boolean,
     default: true,
@@ -69,14 +68,5 @@ const alumnoSchema = new Schema({
     type: Number,
     default: 6,
   }
-  // categoria: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: "Categoria",
-  //   required: true,
-  // },
-  // usuario: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: "Usuario",
-  // },
 });
 module.exports = mongoose.model("alumno", alumnoSchema);
