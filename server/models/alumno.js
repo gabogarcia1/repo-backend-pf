@@ -16,11 +16,12 @@ const alumnoSchema = new Schema({
   email:{
     type: String,
     require:true,
+    unique: true,
   },
   aniocursado: {
     type: Number,
     required: true,
-    unique: true,
+    
   },
   nroExpediente:{ // este es mi numero de expediente
     type: Number,
