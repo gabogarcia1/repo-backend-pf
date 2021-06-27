@@ -72,7 +72,7 @@ const alumnoSchema = new Schema({
     default: 6,
   }
 });
-alumnoSchemaSchema.plugin(uniqueValidator, {
+alumnoSchema.plugin(uniqueValidator, {
   message: "{PATH} debe ser unico",
 });
 module.exports = mongoose.model("alumno", alumnoSchema);
