@@ -21,7 +21,6 @@ const alumnoSchema = new Schema({
   aniocursado: {
     type: Number,
     required: true,
-    
   },
   nroexpediente:{ // este es mi numero de expediente
     type: Number,
@@ -38,8 +37,8 @@ const alumnoSchema = new Schema({
     default: true,
   },
   materia_matematicas:{
-    type: Number,
-    default: 4,
+    type: Array,
+    default: ["4","4","3","2"],
   },
   materia_lyl:{
     type: Number,
@@ -72,7 +71,12 @@ const alumnoSchema = new Schema({
   materia_edfis:{
     type: Number,
     default: 6,
-  }
+  },
+  img_alumno: {
+    type: String,
+    default:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx_7XSeoV5uoxiFIbSEg9QT-YT7TFqgvuxag&usqp=CAU",
+  },
 });
 alumnoSchema.plugin(uniqueValidator, {
   message: "{PATH} debe ser unico",

@@ -88,6 +88,18 @@ app.post("/alumno", verificaToken, (req, res) => {
     aniocursado: body.aniocursado,
     nroexpediente: body.nroexpediente,
     activo: body.activo,
+    cuota_al_dia:body.cuota_al_dia,
+    materia_matematicas:body.materia_matematicas,
+    materia_lyl:body.materia_lyl,
+    materia_bio:body.materia_bio,
+    materia_fisica: body.materia_fisica,
+    materia_quim:body.materia_quim,
+    materia_eco:body.materia_eco,
+    materia_geo:body.materia_geo,
+    materia_historia:body.materia_historia,
+    materia_edfis:body.materia_edfis,
+    img_alumno:body.img_alumno,
+
   });
 
   alumno.save((err, alumnoDB) => {
