@@ -21,7 +21,7 @@ const alumnoSchema = new Schema({
     type: Number,
     required: true,
   },
-  nroexpediente:{ // este es mi numero de expediente
+  nroExpediente:{ // este es mi numero de expediente
     type: Number,
     required:true,
     unique: true,
