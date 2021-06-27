@@ -86,7 +86,7 @@ app.post("/alumno", verificaToken, (req, res) => {
     apellido:body.apellido,
     email:body.email,
     aniocursado: body.aniocursado,
-    nroExpediente: body.nroExpediente,
+    nroexpediente: body.nroexpediente,
     activo: body.activo,
   });
 
