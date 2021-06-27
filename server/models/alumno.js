@@ -38,39 +38,39 @@ const alumnoSchema = new Schema({
   },
   materia_matematicas:{
     type: Array,
-    default: ["4","4","3","2"],
+    default: ["4","6","7","4"],
   },
   materia_lyl:{
-    type: Number,
-    default: 8,
+    type: Array,
+    default: ["5","10","7","4"],
   },
   materia_bio:{
-    type: Number,
-    default: 5,
+    type: Array,
+    default: ["9","6","7","10"],
   },
   materia_fisica:{
-    type: Number,
-    default: 8,
+    type: Array,
+    default: ["10","6","7","9"],
   },
   materia_quim:{
-    type: Number,
-    default: 5,
+    type: Array,
+    default: ["5","6","7","7"],
   },
   materia_eco:{
-    type: Number,
-    default: 8,
+    type: Array,
+    default: ["9","6","7","9"],
   },
   materia_geo:{
-    type: Number,
-    default: 8,
+    type: Array,
+    default: ["5","6","7","9"],
   },
   materia_historia:{
-    type: Number,
-    default: 7,
+    type: Array,
+    default: ["10","6","7","7"],
   },
   materia_edfis:{
-    type: Number,
-    default: 6,
+   type: Array,
+    default: ["10","6","10","7"],
   },
   img_alumno: {
     type: String,
