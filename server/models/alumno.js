@@ -20,6 +20,7 @@ const alumnoSchema = new Schema({
   aniocursado: {
     type: Number,
     required: true,
+    unique: true,
   },
   nroExpediente:{ // este es mi numero de expediente
     type: Number,
