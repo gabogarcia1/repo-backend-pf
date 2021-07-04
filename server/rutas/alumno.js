@@ -79,7 +79,7 @@ let Alumno = require("../models/alumno");
     });
   });
 });
-app.post("/alumno", verificaToken, (req, res) => {
+app.post("/alumno", (req, res) => {
 
 // app.post("/alumno", (req, res) => {
   let body = req.body;
