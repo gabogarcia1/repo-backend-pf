@@ -7,20 +7,20 @@ const alumnoSchema = new Schema({
  
   nombre: {
     type: String,
-    required: [true, "El nombre es necesario"],
+    // required: [true, "El nombre es necesario"],
   },
   apellido: {
     type: String,
-    required: [true, "El apellido es necesario"],
+    // required: [true, "El apellido es necesario"],
   },
   email:{
     type: String,
-    require:true,
+    // require:true,
     unique: true,
   },
   dni:{
     type: Number,
-    require:true,
+    // require:true,
     unique:true,
     default: 50111222,
   },
@@ -42,12 +42,12 @@ const alumnoSchema = new Schema({
   },
   nroexpediente:{ // este es mi numero de expediente
     type: Number,
-    required:true,
+    // required:true,
     unique: true,
   },
   activo: {
     type: Boolean,
-    required: true,
+    // required: true,
     default: true,
   },
   cuotaaldia: {
