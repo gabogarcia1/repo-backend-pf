@@ -18,6 +18,25 @@ const alumnoSchema = new Schema({
     require:true,
     unique: true,
   },
+  dni:{
+    type: Number,
+    require:true,
+    unique:true,
+    default: 50111222,
+  },
+  diafechanac:{
+    type:Number,
+  },
+  mesfechanac:{
+    type:Number,
+  },
+  aniofechanac:{
+    type:Number,
+  },
+  domicilio:{
+    type: String,
+    default: "General Paz 576, San Miguel de Tucuman, Tucuman"
+  },
   aniocursado: {
     type: Number,
   },
@@ -31,7 +50,7 @@ const alumnoSchema = new Schema({
     required: true,
     default: true,
   },
-  cuota_al_dia: {
+  cuotaaldia: {
     type: Boolean,
     default: true,
   },
