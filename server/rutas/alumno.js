@@ -3,8 +3,8 @@ const { verificaToken } = require("../middlewares/autenticacion");
 const app = express();
 let Alumno = require("../models/alumno");
 //---Método GET
-// app.get("/alumno", verificaToken, (req, res) => {
-  app.get("/alumno", (req, res) => {
+app.get("/alumno", verificaToken, (req, res) => {
+  // app.get("/alumno", (req, res) => {
   let desde = req.query.desde || 0;
   desde = Number(desde);
   let limite = req.query.limite || 5;
@@ -37,8 +37,8 @@ let Alumno = require("../models/alumno");
       });
     });
 });
-//app.get("/alumno/:id", verificaToken, (req, res) => {
-  app.get("/alumno/:id",  (req, res) => {
+app.get("/alumno/:id", verificaToken, (req, res) => {
+  // app.get("/alumno/:id",  (req, res) => {
   let id = req.params.id;
 
   Alumno.findById(id)
@@ -62,8 +62,8 @@ let Alumno = require("../models/alumno");
 //==========================
 // Buscar producto por termino
 //==========================
-// app.get("/alumno/buscar/:termino", verificaToken, (req, res) => {
-  app.get("/alumno/buscar/:termino", (req, res) => {
+app.get("/alumno/buscar/:termino", verificaToken, (req, res) => {
+  // app.get("/alumno/buscar/:termino", (req, res) => {
   let termino = req.params.termino;
   let reGex = new RegExp(termino, "i");
   Alumno.find({ nombre: reGex }).exec((err, producto) => {
@@ -79,7 +79,8 @@ let Alumno = require("../models/alumno");
     });
   });
 });
-app.post("/alumno", (req, res) => {
+app.post("/alumno",verificaToken, (req, res) => {
+
 
 // app.post("/alumno", (req, res) => {
   let body = req.body;
@@ -124,8 +125,8 @@ app.post("/alumno", (req, res) => {
   });
 });
 
-// app.put("/alumno/:id", verificaToken, (req, res) => {
-  app.put("/alumno/:id", (req, res) => {
+app.put("/alumno/:id", verificaToken, (req, res) => {
+  // app.put("/alumno/:id", (req, res) => {
   let id = req.params.id;
   let body = req.body;
   Alumno.findByIdAndUpdate(
