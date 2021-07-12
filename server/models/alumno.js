@@ -2,9 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const uniqueValidator = require("mongoose-unique-validator");
 
-
 const alumnoSchema = new Schema({
- 
   nombre: {
     type: String,
     required: [true, "El nombre es necesario"],
@@ -13,82 +11,83 @@ const alumnoSchema = new Schema({
     type: String,
     required: [true, "El apellido es necesario"],
   },
-  email:{
+  email: {
     type: String,
-    require:true,
+    require: true,
     unique: true,
   },
-  dni:{
+  dni: {
     type: Number,
-    require:true,
-    unique:true,
+    require: true,
+    unique: true,
     default: 50111222,
   },
-  diafechanac:{
-    type:Number,
+  diafechanac: {
+    type: Number,
   },
-  mesfechanac:{
-    type:Number,
+  mesfechanac: {
+    type: Number,
   },
-  aniofechanac:{
-    type:Number,
+  aniofechanac: {
+    type: Number,
   },
-  domicilio:{
+  domicilio: {
     type: String,
-    default: "General Paz 576, San Miguel de Tucuman, Tucuman"
+    default: "General Paz 576, San Miguel de Tucuman, Tucuman",
   },
   aniocursado: {
     type: Number,
   },
-  nroexpediente:{ // este es mi numero de expediente
+  nroexpediente: {
+    // este es mi numero de expediente
     type: Number,
-    required:true,
+    required: true,
     unique: true,
   },
   activo: {
     type: Boolean,
-    required: true,
+    // required: true,
     default: true,
   },
   cuotaaldia: {
     type: Boolean,
     default: true,
   },
-  materia_matematicas:{
+  materia_matematicas: {
     type: Array,
-    default: ["4","6","7","4"],
+    default: ["4", "6", "7", "4"],
   },
-  materia_lyl:{
+  materia_lyl: {
     type: Array,
-    default: ["5","10","7","4"],
+    default: ["5", "10", "7", "4"],
   },
-  materia_bio:{
+  materia_bio: {
     type: Array,
-    default: ["9","6","7","10"],
+    default: ["9", "6", "7", "10"],
   },
-  materia_fisica:{
+  materia_fisica: {
     type: Array,
-    default: ["10","6","7","9"],
+    default: ["10", "6", "7", "9"],
   },
-  materia_quim:{
+  materia_quim: {
     type: Array,
-    default: ["5","6","7","7"],
+    default: ["5", "6", "7", "7"],
   },
-  materia_eco:{
+  materia_eco: {
     type: Array,
-    default: ["9","6","7","9"],
+    default: ["9", "6", "7", "9"],
   },
-  materia_geo:{
+  materia_geo: {
     type: Array,
-    default: ["5","6","7","9"],
+    default: ["5", "6", "7", "9"],
   },
-  materia_historia:{
+  materia_historia: {
     type: Array,
-    default: ["10","6","7","7"],
+    default: ["10", "6", "7", "7"],
   },
-  materia_edfis:{
-   type: Array,
-    default: ["10","6","10","7"],
+  materia_edfis: {
+    type: Array,
+    default: ["10", "6", "10", "7"],
   },
   img_alumno: {
     type: String,
